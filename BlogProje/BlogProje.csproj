@@ -205,6 +205,7 @@
     <Content Include="images\loader.gif" />
     <Content Include="images\logo.png" />
     <Content Include="images\menubg.jpg" />
+    <Content Include="images\version\blog.png" />
     <Content Include="images\version\garden-footer-logo.png" />
     <Content Include="images\version\garden-logo.png" />
     <Content Include="images\videohover.png" />
@@ -239,7 +240,6 @@
     <Content Include="upload\banner_02.jpg" />
     <Content Include="upload\banner_03.jpg" />
     <Content Include="upload\banner_04.jpg" />
-    <Content Include="upload\banner_05.jpg" />
     <Content Include="upload\banner_06.jpg" />
     <Content Include="upload\banner_07.jpg" />
     <Content Include="upload\cta.jpg" />
