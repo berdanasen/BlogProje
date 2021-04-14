@@ -170,8 +170,12 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\DashboardIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PostEditViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -181,6 +185,10 @@
     <Compile Include="Migrations\202104121352481_Initial.cs" />
     <Compile Include="Migrations\202104121352481_Initial.Designer.cs">
       <DependentUpon>202104121352481_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.cs" />
+    <Compile Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.Designer.cs">
+      <DependentUpon>202104141307541_DATETIMEREQUIREDREMOVED.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2198,6 +2206,11 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\New.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2250,6 +2263,12 @@
     <Content Include="upload\insta_07.jpeg" />
     <Content Include="upload\insta_08.jpeg" />
     <Content Include="upload\insta_09.jpeg" />
+    <Content Include="upload\Posts\67e0b31b-7602-4508-b925-0bcb155f1724.jpg" />
+    <Content Include="upload\Posts\b0aba252-5e3f-4efc-94d8-949f189f2834.jpg" />
+    <Content Include="upload\Posts\b71f23a4-a878-4ec0-9cc9-cd2b7b6ca8e7.jpg" />
+    <Content Include="upload\Posts\b7f116ec-9510-4cae-9df1-e4984676eb27.jpg" />
+    <Content Include="upload\Posts\ef5f0a8f-75bf-4589-aebe-2bd3f67a3c34.jpg" />
+    <Content Include="upload\Posts\f44e4682-9d89-43d2-9c63-856572865c98.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2292,7 +2311,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AdminBase\" />
-    <Folder Include="Areas\Admin\Views\Posts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2310,6 +2328,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104121352481_Initial.resx">
       <DependentUpon>202104121352481_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.resx">
+      <DependentUpon>202104141307541_DATETIMEREQUIREDREMOVED.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

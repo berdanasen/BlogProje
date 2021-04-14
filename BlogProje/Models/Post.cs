@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BlogProje.Models
 {
@@ -30,9 +31,10 @@ namespace BlogProje.Models
         public string Slug { get; set; }
 
         [Display(Name = "İçerik")]
+        [AllowHtml]
         public string Content { get; set; }
 
-        [Required]
+        
         public DateTime? CreationTime { get; set; }
 
         public virtual ApplicationUser Author { get; set; }

@@ -59,22 +59,22 @@ namespace BlogProje.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View("Edit", db.Categories.Find(id));
+            return View(db.Categories.Find(id));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Category model)
+        public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(model).State = EntityState.Modified;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["successMessage"] = "Kategori ismi başarıyla değiştirildi.";
                 return RedirectToAction("Index");
             }
 
-            return View("Edit", model);
+            return View(category);
         }
     }
 }

@@ -11,13 +11,13 @@
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link text-white" })
-                    @*<a class="nav-link text-white" href="#">Gardening</a>*@
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link text-white" })
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Admin</a>
+                    @Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link text-white" })
+
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")
