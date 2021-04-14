@@ -46,9 +46,9 @@
 
         @Html.Partial("_TopBar")<!-- end topbar -->
 
-        
+
         @RenderBody()
-        
+
 
         @Html.Partial("_Footer") <!-- end footer -->
 
@@ -62,6 +62,8 @@
     <script src="~/Scripts/js/tether.min.js"></script>
     <script src="~/Scripts/js/bootstrap.min.js"></script>
     <script src="~/Scripts/js/custom.js"></script>
+
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

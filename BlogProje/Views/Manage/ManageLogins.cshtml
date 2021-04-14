@@ -4,14 +4,13 @@
     ViewBag.Title = "Manage your external logins";
 }
 
+<p class="text-success pt-5 ml-3">@ViewBag.StatusMessage</p>
 <h2>@ViewBag.Title.</h2>
-
-<p class="text-success">@ViewBag.StatusMessage</p>
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0) {
         <div>
-            <p>
+            <p class="ml-3">
                 There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
                 for details on setting up this ASP.NET application to support logging in via external services.
             </p>

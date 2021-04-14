@@ -1,0 +1,26 @@
+﻿@model Category
+@{
+    ViewBag.Title = "New Category";
+    ViewBag.HeaderTitle = "New Category";
+}
+
+@if (TempData["successMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["successMessage"]
+    </div>
+}
+
+@using (Html.BeginForm("New", "Categories", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.CategoryName)
+        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryName)
+    </div>
+
+    <button>Add</button>
+}
+
