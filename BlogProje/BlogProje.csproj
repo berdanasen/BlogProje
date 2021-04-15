@@ -182,13 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104121352481_Initial.cs" />
-    <Compile Include="Migrations\202104121352481_Initial.Designer.cs">
-      <DependentUpon>202104121352481_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.cs" />
-    <Compile Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.Designer.cs">
-      <DependentUpon>202104141307541_DATETIMEREQUIREDREMOVED.cs</DependentUpon>
+    <Compile Include="Migrations\202104151216145_Init.cs" />
+    <Compile Include="Migrations\202104151216145_Init.Designer.cs">
+      <DependentUpon>202104151216145_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2326,11 +2322,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104121352481_Initial.resx">
-      <DependentUpon>202104121352481_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.resx">
-      <DependentUpon>202104141307541_DATETIMEREQUIREDREMOVED.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104151216145_Init.resx">
+      <DependentUpon>202104151216145_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

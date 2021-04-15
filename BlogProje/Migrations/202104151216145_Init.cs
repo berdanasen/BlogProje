@@ -3,7 +3,7 @@ namespace BlogProje.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -27,7 +27,7 @@ namespace BlogProje.Migrations
                         Title = c.String(nullable: false, maxLength: 200),
                         Slug = c.String(maxLength: 200),
                         Content = c.String(),
-                        CreationTime = c.DateTime(nullable: false),
+                        CreationTime = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.AuthorId)
