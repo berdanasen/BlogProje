@@ -1,20 +1,51 @@
-﻿<input id="toggle-event" type="checkbox" data-toggle="toggle">
-<div id="console-event"></div>
+﻿@model List<Post>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Category.CategoryName</h5>
+                        <p class="card-text">@Html.Raw(item.Content)</p>
+                        @*<a href="#" class="btn btn-primary">@item.Author.Email</a>*@
+                        <div class="row d-flex justify-content-center align-items-center">
+                            @{
+                                var status = item.Publish == true ? "checked" : "";
+                            }
+                            <input class="toggle-event" type="checkbox" data-toggle="toggle" data-id="@item.Id" @status>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+</div>
 @section scripts {
     <script>
         $(function () {
-            $('#toggle-event').change(function () {
-                $('#console-event').html('Toggle: ' + $(this).prop('checked'));
+            $('.toggle-event').change(function () {
+                $.ajax({
+                        type: "post",
+                        url: "@Url.Action("Publish", "Dashboard")",
+                        data: { id: $(this).data('id'), publish: $(this).prop('checked') },
+                        success: function (result) {
+                            if (result.success) {
+                                toastr.success("Başarılı", "Post Aktifleştirildi.");
+                            } else {
+                                toastr.warning("Başarılı", "Post Pasifleştirildi.");
+                            }
+                        }
+                    });
+                /*console.log($(this).prop('checked'))*/
+                //$('.console-event-').html('Toggle: ' + $(this).prop('checked'));
             })
-        })
+            $("img").css({
+                "max-width": "15rem"
+            })
+        });
     </script>
 } 
-
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>
