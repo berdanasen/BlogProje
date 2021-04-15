@@ -190,6 +190,10 @@
     <Compile Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.Designer.cs">
       <DependentUpon>202104141307541_DATETIMEREQUIREDREMOVED.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104151255249_Publish.cs" />
+    <Compile Include="Migrations\202104151255249_Publish.Designer.cs">
+      <DependentUpon>202104151255249_Publish.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -2331,6 +2335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104141307541_DATETIMEREQUIREDREMOVED.resx">
       <DependentUpon>202104141307541_DATETIMEREQUIREDREMOVED.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104151255249_Publish.resx">
+      <DependentUpon>202104151255249_Publish.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
