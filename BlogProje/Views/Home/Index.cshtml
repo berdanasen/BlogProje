@@ -1,4 +1,5 @@
-﻿@model List<Post>
+﻿@using BlogProje.Helpers
+@model List<Post>
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -22,14 +23,14 @@
         <div class="masonry-blog clearfix">
             <div class="left-side">
                 <div class="masonry-box post-media">
-                    <img src="~/upload/garden_cat_01.jpg" alt="" class="img-fluid">
+                    <img src="" alt="" class="img-fluid" style="width: 100%; height: 250px;">
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-aqua"><a href="#" title="">Gardening</a></span>
-                                <h4><a href="#" title="">How to choose high quality soil for your gardens</a></h4>
-                                <small><a href="#" title="">21 July, 2017</a></small>
-                                <small><a href="#" title="">by Amanda</a></small>
+                                <span class="bg-aqua"><a href="#" title="">@ViewBag.TopBir.Category.CategoryName</a></span>
+                                <h4><a href="#" title="" class="bg-content-1">@Html.Raw(ViewBag.TopBir.Content)</a></h4>
+                                <small><a href="#" title="">@ViewBag.TopBir.CreationTime</a></small>
+                                <small><a href="#" title="">@ViewBag.TopBir.Author.Email</a></small>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
@@ -38,14 +39,14 @@
 
             <div class="center-side">
                 <div class="masonry-box post-media">
-                    <img src="~/upload/garden_cat_02.jpg" alt="" class="img-fluid">
+                    <img src="" alt="" class="img-fluid" style="width: 100%; height: 250px;">
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-aqua"><a href="blog-category-01.html" title="">Outdoor</a></span>
-                                <h4><a href="garden-single.html" title="">You can create a garden with furniture in your home</a></h4>
-                                <small><a href="garden-single.html" title="">19 July, 2017</a></small>
-                                <small><a href="#" title="">by Amanda</a></small>
+                                <span class="bg-aqua"><a href="blog-category-01.html" title="">@ViewBag.TopIki.Category.CategoryName</a></span>
+                                <h4><a href="garden-single.html" title="" class="bg-content-2">@Html.Raw(ViewBag.TopIki.Content)</a></h4>
+                                <small><a href="garden-single.html" title="">@ViewBag.TopIki.CreationTime</a></small>
+                                <small><a href="#" title="">@ViewBag.TopIki.Author.Email</a></small>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
@@ -54,14 +55,14 @@
 
             <div class="right-side hidden-md-down">
                 <div class="masonry-box post-media">
-                    <img src="~/upload/garden_cat_03.jpg" alt="" class="img-fluid">
+                    <img src="" alt="" class="img-fluid" style="width: 100%; height: 250px;">
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-aqua"><a href="blog-category-01.html" title="">Indoor</a></span>
-                                <h4><a href="garden-single.html" title="">The success of the 10 companies in the vegetable sector</a></h4>
-                                <small><a href="garden-single.html" title="">03 July, 2017</a></small>
-                                <small><a href="#" title="">by Jessica</a></small>
+                                <span class="bg-aqua"><a href="blog-category-01.html" title="">@ViewBag.TopUc.Category.CategoryName</a></span>
+                                <h4><a href="garden-single.html" title="" class="bg-content-3">@Html.Raw(ViewBag.TopUc.Content)</a></h4>
+                                <small><a href="garden-single.html" title="">@ViewBag.TopUc.CreationTime</a></small>
+                                <small><a href="#" title="">@ViewBag.TopUc.Author.Email</a></small>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
@@ -83,7 +84,7 @@
                                 <div class="col-md-4">
                                     <div class="post-media">
                                         <a href="garden-single.html" title="">
-                                            <img src="~/ima" alt="" class="img-fluid">
+                                            <img src="" alt="" class="img-fluid">
                                             <div class="hovereffect"></div>
                                         </a>
                                     </div><!-- end media -->
@@ -201,6 +202,7 @@
 @section scripts{
     <script>
         $(function () {
+
             $(".blog-meta > p > img").css({
                 "display": "none"
             })
@@ -209,7 +211,20 @@
             for (var i = 0; i < $(".blog-box").length; i++) {
                 $(".blog-meta > p > img")[i].parentNode.parentElement.parentElement.children[0].children[0].children[0].children[0].attributes["src"].value = $(".blog-meta > p > img")[i].attributes["src"].value
             }
+
+            $(".bg-content-1").text($(".bg-content-1")[0].innerText.substr(0, 50).concat("..."))
+            $(".bg-content-2").text($(".bg-content-2")[0].innerText.substr(0, 50).concat("..."))
+            $(".bg-content-3").text($(".bg-content-3")[0].innerText.substr(0, 50).concat("..."))
+
         })
 
+        function UploadImages() {
+            $(".masonry-box")[0].children[0].setAttribute("src", $(`.bg-content-1`).find("img")[0].src.split(":")[2].slice(5));
+            $(".masonry-box")[1].children[0].setAttribute("src", $(`.bg-content-2`).find("img")[0].src.split(":")[2].slice(5));
+            $(".masonry-box")[2].children[0].setAttribute("src", $(`.bg-content-3`).find("img")[0] == undefined ? "https://place-hold.it/300/200" : $(`.bg-content-3`).find("img")[0].src.split(":")[2].slice(5));
+
+        }
+
+        UploadImages()
     </script>
 }

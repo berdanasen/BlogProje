@@ -182,6 +182,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ContentCropper.cs" />
     <Compile Include="Migrations\202104151216145_Init.cs" />
     <Compile Include="Migrations\202104151216145_Init.Designer.cs">
       <DependentUpon>202104151216145_Init.cs</DependentUpon>

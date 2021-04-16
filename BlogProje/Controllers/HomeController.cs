@@ -14,6 +14,10 @@ namespace BlogProje.Controllers
         
         public ActionResult Index()
         {
+            ViewBag.TopBir = db.Posts.Include(x => x.Category).OrderByDescending(x => x.CreationTime).FirstOrDefault();
+            ViewBag.TopIki = db.Posts.Include(x => x.Category).OrderByDescending(x => x.CreationTime).Skip(1).FirstOrDefault();
+            ViewBag.TopUc = db.Posts.Include(x => x.Category).OrderByDescending(x => x.CreationTime).Skip(2).FirstOrDefault();
+
             return View(db.Posts.Include(x => x.Category).Where(x => x.Publish == true).ToList());
         }
 
