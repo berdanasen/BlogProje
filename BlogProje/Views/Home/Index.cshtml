@@ -84,17 +84,17 @@
                                 <div class="col-md-4">
                                     <div class="post-media">
                                         <a href="garden-single.html" title="">
-                                            <img src="" alt="" class="img-fluid">
+                                            <img height="150" width="500" src="" alt="" class="">
                                             <div class="hovereffect"></div>
                                         </a>
                                     </div><!-- end media -->
                                 </div><!-- end col -->
 
                                 <div class="blog-meta big-meta col-md-8">
-                                    <span class="bg-aqua"><a href="garden-category.html" title="">Indoor</a></span>
-                                    <h4><a href="garden-single.html" title="">@item.Category.CategoryName</a></h4>
+                                    @*<span class="bg-aqua"><a href="garden-category.html" title="">Indoor</a></span>*@
+                                    <h3><a href="garden-single.html" title="">@item.Category.CategoryName</a></h3><br />
                                     <p>@Html.Raw(item.Content)</p>
-                                    <small><a href="garden-category.html" title=""><i class="fa fa-eye"></i> 1887</a></small>
+                                    <small><a href="garden-category.html" title=""><i class="fa fa-eye"></i> 29</a></small>
                                     <small><a href="garden-single.html" title="">@item.CreationTime</a></small>
                                     <small><a href="#" title="">by @item.Author.Email</a></small>
                                 </div><!-- end meta -->
@@ -226,6 +226,7 @@
         }
 
         UploadImages();
+        $("h3").next("p").remove()
         
     </script>
 }
