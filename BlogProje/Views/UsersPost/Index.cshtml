@@ -1,0 +1,24 @@
+﻿@model List<Post>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container m-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            if (User.Identity.Name == item.Author.Email)
+            {
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Category.CategoryName</h5>
+                            <p class="card-text">@item.Author.Email</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

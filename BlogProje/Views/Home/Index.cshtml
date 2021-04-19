@@ -209,22 +209,23 @@
 
 
             for (var i = 0; i < $(".blog-box").length; i++) {
-                $(".blog-meta > p > img")[i].parentNode.parentElement.parentElement.children[0].children[0].children[0].children[0].attributes["src"].value = $(".blog-meta > p > img")[i].attributes["src"].value
-            }
-
-            $(".bg-content-1").text($(".bg-content-1")[0].innerText.substr(0, 50).concat("..."))
-            $(".bg-content-2").text($(".bg-content-2")[0].innerText.substr(0, 50).concat("..."))
-            $(".bg-content-3").text($(".bg-content-3")[0].innerText.substr(0, 50).concat("..."))
-
+                $(".blog-meta > p > img")[i].parentNode.parentElement.parentElement.children[0].children[0].children[0].children[0].attributes["src"].value = $(".blog-meta > p > img")[i].attributes["src"].value;
+            }       
         })
 
         function UploadImages() {
-            $(".masonry-box")[0].children[0].setAttribute("src", $(`.bg-content-1`).find("img")[0].src.split(":")[2].slice(5));
-            $(".masonry-box")[1].children[0].setAttribute("src", $(`.bg-content-2`).find("img")[0].src.split(":")[2].slice(5));
+
+            $(".masonry-box")[0].children[0].setAttribute("src", $(`.bg-content-1`).find("img")[0] == undefined ? "https://place-hold.it/300/200" : $(`.bg-content-1`).find("img")[0].src.split(":")[2].slice(5));
+            $(".masonry-box")[1].children[0].setAttribute("src", $(`.bg-content-2`).find("img")[0] == undefined ? "https://place-hold.it/300/200" : $(`.bg-content-2`).find("img")[0].src.split(":")[2].slice(5));
             $(".masonry-box")[2].children[0].setAttribute("src", $(`.bg-content-3`).find("img")[0] == undefined ? "https://place-hold.it/300/200" : $(`.bg-content-3`).find("img")[0].src.split(":")[2].slice(5));
+
+            $(".bg-content-1").text($(".bg-content-1")[0].innerText.substr(0, 50).concat("..."));
+            $(".bg-content-2").text($(".bg-content-2")[0].innerText.substr(0, 50).concat("..."));
+            $(".bg-content-3").text($(".bg-content-3")[0].innerText.substr(0, 50).concat("..."));
 
         }
 
-        UploadImages()
+        UploadImages();
+        
     </script>
 }

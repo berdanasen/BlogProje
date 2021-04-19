@@ -101,7 +101,8 @@ namespace BlogProje.Areas.Admin.Controllers
                     CategoryId = model.CategoryId,
                     AuthorId = User.Identity.GetUserId(),
                     CreationTime = DateTime.Now,
-                    Slug = model.Slug
+                    Slug = model.Slug,
+                    Publish = false
                 };
 
                 db.Posts.Add(post);

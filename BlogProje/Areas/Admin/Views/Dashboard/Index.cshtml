@@ -3,9 +3,8 @@
     <div class="row">
         @foreach (var item in Model)
         {
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
+            <div class="col-4">
+                <div class="card" style="width: auto;">
                     <div class="card-body">
                         <h5 class="card-title">@item.Category.CategoryName</h5>
                         <p class="card-text">@Html.Raw(item.Content)</p>
@@ -26,6 +25,14 @@
 </div>
 @section scripts {
     <script>
+        function UploadImages() {
+
+            for (var i = 0; i < $(".card-text").next("p").length; i++) {
+                if ($(".card-text").next("p")[i].children[0]?.src == undefined) {
+                    $(".card-text").next("p")[i].prepend($('<img>', { src: 'https://placehold.co/400x100' })[0])
+                }
+            }
+        }
         $(function () {
             $('.toggle-event').change(function () {
                 $.ajax({
@@ -44,8 +51,17 @@
                 //$('.console-event-').html('Toggle: ' + $(this).prop('checked'));
             })
             $("img").css({
-                "max-width": "15rem"
+                "max-width": "auto",
+                "height" : "100px"
             })
+            $(".card-text").next("p").css({
+                "overflow": "auto"
+            })
+
+
+            
+
+            UploadImages();
         });
     </script>
 } 
