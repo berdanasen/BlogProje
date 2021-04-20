@@ -1,4 +1,6 @@
 ﻿using BlogProje.Models;
+using BlogProje.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +13,7 @@ namespace BlogProje.Controllers
     public class HomeController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        
+
         public ActionResult Index()
         {
             ViewBag.TopBir = db.Posts.Include(x => x.Category).OrderByDescending(x => x.CreationTime).FirstOrDefault();
@@ -33,6 +35,51 @@ namespace BlogProje.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult ShowPost(int id, string slug)
+        {
+            Post post = db.Posts.Find(id);
+
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            // veritabanındakiyle aynı değilse doğrusuna yönlendir
+            if (post.Slug != slug)
+            {
+                return RedirectToRoute("PostRoute", new { id = id, slug = post.Slug });
+            }
+
+            return View(post);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult SendComment(SendCommentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Comment comment = new Comment
+                {
+                    AuthorId = User.Identity.GetUserId(),
+                    AuthorName = model.AuthorName,
+                    AuthorEmail = model.AuthorEmail,
+                    Content = model.Content,
+                    CreationTime = DateTime.Now,
+                    ParentId = model.ParentId,
+                    PostId = model.PostId
+                };
+
+                db.Comments.Add(comment);
+                db.SaveChanges();
+
+                return Json(comment);
+            }
+
+            var errorList = ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage).ToList();
+
+            return Json(new { Errors = errorList });
         }
 
         protected override void Dispose(bool disposing)

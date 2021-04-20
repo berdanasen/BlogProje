@@ -176,6 +176,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\DashboardIndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PostEditViewModel.cs" />
+    <Compile Include="Attributes\BreadcrumbAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -184,6 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ContentCropper.cs" />
+    <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Migrations\202104151216145_Init.cs" />
     <Compile Include="Migrations\202104151216145_Init.Designer.cs">
       <DependentUpon>202104151216145_Init.cs</DependentUpon>
@@ -202,6 +204,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\UrlService.cs" />
+    <Compile Include="ViewModels\SendCommentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\dist\css\adminlte.css" />
@@ -2310,6 +2313,7 @@
     <Content Include="Views\Shared\_TopBar.cshtml" />
     <Content Include="Views\UsersPost\Index.cshtml" />
     <Content Include="Views\UsersPost\Edit.cshtml" />
+    <Content Include="Views\Home\ShowPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
