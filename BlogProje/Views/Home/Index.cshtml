@@ -97,6 +97,7 @@
                                     <small><a href="garden-category.html" title=""><i class="fa fa-eye"></i> 29</a></small>
                                     <small><a href="garden-single.html" title="">@item.CreationTime</a></small>
                                     <small><a href="#" title="">by @item.Author.Email</a></small>
+                                    @*@Html.Post(item.Content);*@
                                     <div class="d-flex small blog-post-meta-footer">
                                         <a href="@Url.Action("ShowPost", "Home", new { id = item.Id } )#comments"
                                            class="d-inline-block">
