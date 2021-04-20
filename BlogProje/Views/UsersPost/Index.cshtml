@@ -4,7 +4,7 @@
 }
 
 
-<a href="@Url.Action("New", "UsersPosts")" class="ml-5 pl-3">
+<a href="@Url.Action("New", "UsersPost")" class="ml-5 pl-3">
     <i class="fas fa-plus mt-5"></i>
     Yeni Yazı
 </a>
@@ -16,10 +16,11 @@
             if (User.Identity.Name == item.Author.Email)
             {
                 <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">@item.Category.CategoryName</h5>
-                            <p class="card-text">@item.Author.Email</p>
+                            <h5 class="card-title ml-2" >@item.Category.CategoryName</h5>
+                            <p class="card-text">@Html.Raw(item.Content)</p>
+                            <strong class="d-flex justify-content-center align-items-center ">@item.Author.Email</strong>
                         </div>
                     </div>
                 </div>
@@ -27,3 +28,26 @@
         }
     </div>
 </div>
+
+@section scripts {
+    <script>
+        function UploadImages() {
+
+            for (var i = 0; i < $(".card-text").next("p").length; i++) {
+                if ($(".card-text").next("p")[i].children[0]?.src == undefined) {
+                    $(".card-text").next("p")[i].prepend($('<img>', { src: 'https://placehold.co/400x100' })[0])
+                }
+            }
+        }
+
+        $("img").css({
+            "max-width": "auto",
+            "height": "100px"
+        })
+        $(".card-text").next("p").css({
+            "overflow": "auto"
+        })
+
+        UploadImages();
+    </script>
+}
