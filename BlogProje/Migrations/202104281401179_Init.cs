@@ -3,7 +3,7 @@ namespace BlogProje.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Like : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -20,10 +20,12 @@ namespace BlogProje.Migrations
                 .Index(t => t.PostId)
                 .Index(t => t.UserId);
             
+            DropColumn("dbo.Posts", "Likes");
         }
         
         public override void Down()
         {
+            AddColumn("dbo.Posts", "Likes", c => c.Boolean(nullable: false));
             DropForeignKey("dbo.Likes", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Likes", "PostId", "dbo.Posts");
             DropIndex("dbo.Likes", new[] { "UserId" });

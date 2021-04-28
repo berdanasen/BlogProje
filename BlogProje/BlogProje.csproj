@@ -186,17 +186,9 @@
     </Compile>
     <Compile Include="Helpers\ContentCropper.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
-    <Compile Include="Migrations\202104151216145_Init.cs" />
-    <Compile Include="Migrations\202104151216145_Init.Designer.cs">
-      <DependentUpon>202104151216145_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104151255249_Publish.cs" />
-    <Compile Include="Migrations\202104151255249_Publish.Designer.cs">
-      <DependentUpon>202104151255249_Publish.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104281209429_Like.cs" />
-    <Compile Include="Migrations\202104281209429_Like.Designer.cs">
-      <DependentUpon>202104281209429_Like.cs</DependentUpon>
+    <Compile Include="Migrations\202104281401179_Init.cs" />
+    <Compile Include="Migrations\202104281401179_Init.Designer.cs">
+      <DependentUpon>202104281401179_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2313,12 +2305,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_TopBar.cshtml" />
     <Content Include="Views\UsersPost\Index.cshtml" />
     <Content Include="Views\UsersPost\Edit.cshtml" />
     <Content Include="Views\Home\ShowPost.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2339,14 +2331,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104151216145_Init.resx">
-      <DependentUpon>202104151216145_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104151255249_Publish.resx">
-      <DependentUpon>202104151255249_Publish.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104281209429_Like.resx">
-      <DependentUpon>202104281209429_Like.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104281401179_Init.resx">
+      <DependentUpon>202104281401179_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
