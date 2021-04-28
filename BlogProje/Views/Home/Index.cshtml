@@ -1,4 +1,5 @@
 ﻿@using BlogProje.Helpers
+@using Microsoft.AspNet.Identity
 @model List<Post>
 @{
     ViewBag.Title = "Home";
@@ -94,7 +95,23 @@
                                     @*<span class="bg-aqua"><a href="garden-category.html" title="">Indoor</a></span>*@
                                     <h3><a href="garden-single.html" title="">@item.Category.CategoryName</a></h3><br />
                                     <p>@Html.Raw(item.Content)</p>
-                                    <small><a href="garden-category.html" title=""><i class="fa fa-eye"></i> 29</a></small>
+                                    <small>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (item.Likes.FirstOrDefault(x => x.PostId == item.Id && x.UserId == User.Identity.GetUserId()) != null)
+                                            {
+                                                <a href="#" title="" data-fav="@item.Id"><i class="fas fa-thumbs-up">@item.Likes.Count</i> </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" title="" data-fav="@item.Id"><i class="far fa-thumbs-up">@item.Likes.Count</i> </a>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <i class="far fa-thumbs-up">@item.Likes.Count</i>
+                                        }
+                                    </small>
                                     <small><a href="garden-single.html" title="">@item.CreationTime</a></small>
                                     <small><a href="#" title="">by @item.Author.Email</a></small>
                                     @*@Html.Post(item.Content);*@
@@ -213,6 +230,29 @@
 
 @section scripts{
     <script>
+
+        $('[data-fav]').on('click', function (e) {
+            e.preventDefault();
+
+            //var favId = e.target.attributes[2].value;
+            //e.target.classList[0] = "fas";
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddFavourite","Home")",
+                data: { id: e.target.parentElement.dataset.fav },
+                success: function (data) {
+                    if (data.status) {
+                        e.target.classList.remove("far", "fa-thumbs-up")
+                        e.target.classList.add("fas", "fa-thumbs-up")
+                    } else {
+                        e.target.classList.remove("fas", "fa-thumbs-up")
+                        e.target.classList.add("far", "fa-thumbs-up")
+                    }
+                    e.target.innerText = parseInt(data.count)
+                }
+            })
+        })
+
         $(function () {
 
             $(".blog-meta > p > img").css({
@@ -222,7 +262,7 @@
 
             for (var i = 0; i < $(".blog-box").length; i++) {
                 $(".blog-meta > p > img")[i].parentNode.parentElement.parentElement.children[0].children[0].children[0].children[0].attributes["src"].value = $(".blog-meta > p > img")[i].attributes["src"].value;
-            }       
+            }
         })
 
         function UploadImages() {
@@ -239,6 +279,6 @@
 
         UploadImages();
         $("h3").next("p").remove()
-        
+
     </script>
 }
