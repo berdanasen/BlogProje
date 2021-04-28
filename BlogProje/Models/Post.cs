@@ -38,7 +38,7 @@ namespace BlogProje.Models
         public DateTime? CreationTime { get; set; }
 
         public bool Publish { get; set; }
-
+        public virtual ICollection<Like> Likes { get; set; }
         public virtual ApplicationUser Author { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

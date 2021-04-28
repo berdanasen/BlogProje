@@ -20,7 +20,33 @@ namespace BlogProje.Controllers
             ViewBag.TopIki = db.Posts.Include(x => x.Category).OrderByDescending(x => x.CreationTime).Skip(1).FirstOrDefault();
             ViewBag.TopUc = db.Posts.Include(x => x.Category).OrderByDescending(x => x.CreationTime).Skip(2).FirstOrDefault();
 
-            return View(db.Posts.Include(x => x.Category).Where(x => x.Publish == true).ToList());
+            return View(db.Posts.Include(x => x.Category).Include(x=>x.Likes).Where(x => x.Publish == true).ToList());
+        }
+        [HttpPost]
+        public ActionResult AddFavourite(int id)
+        {
+            var post = db.Posts.Find(id);
+            bool status = true;
+            if (post != null)
+            {
+                var like = post.Likes.FirstOrDefault(x => x.UserId == User.Identity.GetUserId());
+                if (like != null)
+                {
+                    db.Likes.Remove(like);
+                    status = false;
+                }
+                else
+                {
+                    post.Likes.Add(new Like
+                    {
+                        PostId = post.Id,
+                        UserId = User.Identity.GetUserId(),
+                    });
+                }
+                
+            }
+            db.SaveChanges();
+            return Json(new { count = db.Likes.Count(x => x.PostId == post.Id), status = status });
         }
 
         public ActionResult About()
