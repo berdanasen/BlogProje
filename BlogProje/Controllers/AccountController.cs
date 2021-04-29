@@ -75,6 +75,13 @@ namespace BlogProje.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var user = await UserManager.FindByNameAsync(model.Email);
+            
+            if (user.IsEnabled != true)
+            { 
+                ModelState.AddModelError("", "You are restricted for access.");
+                return View(model);
+            }
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {

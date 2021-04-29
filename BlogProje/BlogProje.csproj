@@ -2311,6 +2311,7 @@
     <Content Include="Views\UsersPost\Edit.cshtml" />
     <Content Include="Views\Home\ShowPost.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\_RecentPosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

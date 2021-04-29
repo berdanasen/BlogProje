@@ -108,6 +108,11 @@ namespace BlogProje.Controllers
             return Json(new { Errors = errorList });
         }
 
+        public ActionResult RecentPosts()
+        {
+            return PartialView("_RecentPosts", db.Posts.Include(x => x.Category).Include(x => x.Likes).Where(x => x.Publish == true).ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
