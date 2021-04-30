@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -111,6 +112,31 @@ namespace BlogProje.Controllers
         public ActionResult RecentPosts()
         {
             return PartialView("_RecentPosts", db.Posts.Include(x => x.Category).Include(x => x.Likes).Where(x => x.Publish == true).ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePhoto(HttpPostedFileBase resim)
+        {
+            if (resim != null && resim?.ContentLength > 0)
+            {
+                var user = db.Users.Find(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    var filePath = Guid.NewGuid() + Path.GetExtension(resim.FileName);
+                    var savePath = Path.Combine(Server.MapPath("~/images/Uploads"), filePath);
+                    var deletedPath = Path.Combine(Server.MapPath("~/images/Uploads"), user.Photo);
+                    user.Photo = filePath;
+                    if (System.IO.File.Exists(deletedPath))
+                    {
+                        System.IO.File.Delete(deletedPath);
+                    }
+                    resim.SaveAs(savePath);
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Manage");
         }
 
         protected override void Dispose(bool disposing)

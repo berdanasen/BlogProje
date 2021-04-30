@@ -184,6 +184,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ContentCropper.cs" />
+    <Compile Include="Helpers\GetUserProfilePhoto.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Migrations\202104281401179_Init.cs" />
     <Compile Include="Migrations\202104281401179_Init.Designer.cs">
@@ -2316,6 +2317,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AdminBase\" />
+    <Folder Include="images\Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

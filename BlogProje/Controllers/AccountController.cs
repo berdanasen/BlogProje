@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BlogProje.Models;
+using System.IO;
 
 namespace BlogProje.Controllers
 {
@@ -154,11 +155,25 @@ namespace BlogProje.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resim)
         {
+            string[] izinVerilenler = { ".jpg", ".jpeg", ".png" };
+            if (resim != null)
+            {
+                if (!izinVerilenler.Contains(Path.GetExtension(resim.FileName).ToLower()))
+                {
+                    ModelState.AddModelError("resim", "İzin verilen dosya uzantıları: jpg/jpeg, png");
+                }
+                else if (resim.ContentLength > 1000 * 1000)
+                {
+                    ModelState.AddModelError("resim", "Maksimum resim boyutu: 1mb");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                user.Photo = ResimYukle(resim);
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -408,6 +423,17 @@ namespace BlogProje.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        private string ResimYukle(HttpPostedFileBase resim)
+        {
+            if (resim == null)
+                return null;
+            var dosyaAd = Guid.NewGuid().ToString() + Path.GetExtension(resim.FileName);
+            var yuklemeKlasoruYolu = Server.MapPath("~/Images/Uploads");
+            var kaydetYol = Path.Combine(yuklemeKlasoruYolu, dosyaAd);
+            resim.SaveAs(kaydetYol);
+            return dosyaAd;
         }
 
         protected override void Dispose(bool disposing)
