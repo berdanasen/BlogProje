@@ -1,5 +1,4 @@
-﻿using BlogProje.Attributes;
-using BlogProje.Models;
+﻿using BlogProje.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -22,41 +21,6 @@ namespace BlogProje.Helpers
             return htmlHelper.ViewContext.RouteData.Values["action"].ToString();
         }
 
-        public static string BreadcrumbControllerName(this HtmlHelper htmlHelper)
-        {
-            string controller = htmlHelper.ControllerName();
-
-            Type t = Type.GetType("BlogFall.Areas.Admin.Controllers." + controller + "Controller");
-            object[] attributes = t.GetCustomAttributes(typeof(BreadcrumbAttribute), true);
-
-            if (attributes.Length == 0)
-            {
-                return controller;
-            }
-
-            var attr = (BreadcrumbAttribute)attributes[0];
-
-            return attr.Name;
-        }
-
-        public static string BreadcrumbActionName(this HtmlHelper htmlHelper)
-        {
-            string controller = htmlHelper.ControllerName();
-            string action = htmlHelper.ActionName();
-
-            Type t = Type.GetType("BlogFall.Areas.Admin.Controllers." + controller + "Controller");
-
-            MethodInfo mi = t.GetMethods().FirstOrDefault(x => x.Name == action);
-
-            BreadcrumbAttribute ba = mi.GetCustomAttribute(typeof(BreadcrumbAttribute))
-                as BreadcrumbAttribute;
-
-            if (ba == null)
-                return action;
-
-            return ba.Name;
-        }
-
         public static IHtmlString ShowPostIntro(this HtmlHelper htmlHelper, string content)
         {
             if (string.IsNullOrEmpty(content))
@@ -71,8 +35,6 @@ namespace BlogProje.Helpers
 
             return htmlHelper.Raw(content.Substring(0, pos));
         }
-
-
 
         public static IHtmlString ShowPost(this HtmlHelper htmlHelper, string content)
         {

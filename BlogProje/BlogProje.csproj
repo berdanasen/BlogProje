@@ -176,7 +176,6 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\DashboardIndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PostEditViewModel.cs" />
-    <Compile Include="Attributes\BreadcrumbAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

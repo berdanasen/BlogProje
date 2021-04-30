@@ -9,6 +9,7 @@ namespace BlogProje.Areas.Admin.Controllers
 {
     public class DashboardController : AdminBaseController
     {
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Dashboard
         public ActionResult Index()
         {

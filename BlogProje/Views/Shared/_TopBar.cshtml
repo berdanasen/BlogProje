@@ -15,13 +15,18 @@
                 <li class="nav-item">
                     @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link text-white" })
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Posts", "Index", "UsersPost", null, new { @class = "nav-link text-white" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link text-white" })
-
-                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Posts", "Index", "UsersPost", null, new { @class = "nav-link text-white" })
+                    </li>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link text-white" })
+                    </li>
+                }
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
