@@ -125,12 +125,17 @@ namespace BlogProje.Controllers
                 {
                     var filePath = Guid.NewGuid() + Path.GetExtension(resim.FileName);
                     var savePath = Path.Combine(Server.MapPath("~/images/Uploads"), filePath);
-                    var deletedPath = Path.Combine(Server.MapPath("~/images/Uploads"), user.Photo);
-                    user.Photo = filePath;
-                    if (System.IO.File.Exists(deletedPath))
+                    if (user.Photo != null)
                     {
-                        System.IO.File.Delete(deletedPath);
+                        var deletedPath = Path.Combine(Server.MapPath("~/images/Uploads"), user.Photo);
+
+                        if (System.IO.File.Exists(deletedPath))
+                        {
+                            System.IO.File.Delete(deletedPath);
+                        }
                     }
+                    user.Photo = filePath;
+                    
                     resim.SaveAs(savePath);
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
